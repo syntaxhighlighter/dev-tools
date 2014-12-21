@@ -1,0 +1,23 @@
+{
+  "name": "dev-tools",
+  "version": "1.0.0",
+  "private": true,
+  "description": "",
+  "author": {
+    "name": "Alex Gorbatchev",
+    "email": "alex.gorbatchev@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/syntaxhighlighter/dev-env.git"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "bluebird": "^2.3.11",
+    "coffee-script": "^1.8.0",
+    "gulp": "^3.8.10",
+    "ramda": "^0.8.0",
+    "request": "^2.51.0",
+    "songbird": "^1.0.1"
+  }
+}
