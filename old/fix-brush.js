@@ -96,7 +96,7 @@ function fixPackageJSON() {
 
   packageJson.devDependencies = {
     "parser": "syntaxhighlighter/parser",
-    "chai": "^1.9.1",
+    "chai": "^3.4.1",
     "babel-core": "^6.1.21",
     "babel-preset-es2015": "^6.1.18",
     "babel-loader": "^6.2.0",
