@@ -36,7 +36,7 @@ function fixBrush() {
   src = replaceOrDie(src, /^\s*\/\/ CommonJS\n/gm, '');
   src = replaceOrDie(src, 'typeof(exports) != \'undefined\' ? exports.Brush = Brush : null;', 'exports.Brush = Brush;');
   src = replaceOrDie(src, /^\s*SyntaxHighlighter\.brushes\.\w+ = Brush;\n/m, '');
-  src = replaceOrDie(src, "SyntaxHighlighter = SyntaxHighlighter || (typeof require !== 'undefined'? require('shCore').SyntaxHighlighter : null);", "var BrushBase = require('brush-base');\nvar regexLib = require('regex-lib');");
+  src = replaceOrDie(src, "SyntaxHighlighter = SyntaxHighlighter || (typeof require !== 'undefined'? require('shCore').SyntaxHighlighter : null);", "var BrushBase = require('@alexgorbatchev/brush-base');\nvar regexLib = require('@alexgorbatchev/regex-lib');");
   src = replaceOrDie(src, /\bSyntaxHighlighter.Highlighter\b/g, 'BrushBase');
   src = replaceOrDie(src, 'exports.Brush = Brush;', 'module.exports = Brush;');
   src = src.replace(/\bSyntaxHighlighter.regexLib\b/g, 'regexLib');
@@ -60,8 +60,8 @@ function fixTests() {
   src = replaceOrDie(src, /\bSAMPLE\b/g, 'sample');
   src = replaceOrDie(src, "var sample = fs.readFileSync(`${__dirname}/../sample`, 'utf8');\nconsole.log(sample);", "var sample = require('raw!./sample.txt');");
   src = replaceOrDie(src, "(typeof window !== 'undefined' && window || global).SyntaxHighlighter = {\n", '');
-  src = replaceOrDie(src, "  Highlighter: require('brush-base'),\n", '');
-  src = replaceOrDie(src, "  regexLib: require('regex-lib'),\n", '');
+  src = replaceOrDie(src, "  Highlighter: require('@alexgorbatchev/brush-base'),\n", '');
+  src = replaceOrDie(src, "  regexLib: require('@alexgorbatchev/regex-lib'),\n", '');
   src = replaceOrDie(src, "  brushes: {}\n", '');
   src = replaceOrDie(src, "};\n", '');
 

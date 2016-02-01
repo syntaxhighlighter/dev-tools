@@ -5,16 +5,23 @@ import path from 'path';
 import Promise from 'songbird';
 import { find, write } from './lib/file';
 
-// find('../*apple*/package.json')
+const updateDependencies = dependencies =>
+  Object.keys(dependencies).forEach(key => {
+    if (dependencies[key].indexOf('syntaxhighlighter/') === 0) {
+      const name = dependencies[key].replace('syntaxhighlighter/', '');
+      delete dependencies[key];
+      dependencies[`@alexgorbatchev/${name}`] = '^4.0.0';
+    }
+  });
+
 find('../!(xregexp|dev-tools|generator*)/package.json')
   .then(files => Promise.all(
     files.map(file =>
       Promise.resolve(JSON.parse(file.content))
         .then(json => {
-          if (json.name.indexOf('gorbatchev') === -1) {
-            json.name = `@alexgorbatchev/${json.name}`;
-            file.content = JSON.stringify(json, null, 2);
-          }
+          updateDependencies(json.devDependencies);
+          updateDependencies(json.dependencies);
+          file.content = JSON.stringify(json, null, 2);
         })
         .then(() => write(file))
     )
