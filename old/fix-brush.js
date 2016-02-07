@@ -36,7 +36,7 @@ function fixBrush() {
   src = replaceOrDie(src, /^\s*\/\/ CommonJS\n/gm, '');
   src = replaceOrDie(src, 'typeof(exports) != \'undefined\' ? exports.Brush = Brush : null;', 'exports.Brush = Brush;');
   src = replaceOrDie(src, /^\s*SyntaxHighlighter\.brushes\.\w+ = Brush;\n/m, '');
-  src = replaceOrDie(src, "SyntaxHighlighter = SyntaxHighlighter || (typeof require !== 'undefined'? require('shCore').SyntaxHighlighter : null);", "var BrushBase = require('brush-base');\nvar regexLib = require('regex-lib');");
+  src = replaceOrDie(src, "SyntaxHighlighter = SyntaxHighlighter || (typeof require !== 'undefined'? require('shCore').SyntaxHighlighter : null);", "var BrushBase = require('brush-base');\nvar regexLib = require('syntaxhighlighter-regex').commonRegExp;");
   src = replaceOrDie(src, /\bSyntaxHighlighter.Highlighter\b/g, 'BrushBase');
   src = replaceOrDie(src, 'exports.Brush = Brush;', 'module.exports = Brush;');
   src = src.replace(/\bSyntaxHighlighter.regexLib\b/g, 'regexLib');
